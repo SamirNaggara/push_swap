@@ -1,5 +1,5 @@
 NAME	=	push_swap
-LIBS	=	libft.a
+LIBS	=	libs/libft.a
 FLAGS	= -Wall -Wextra -Werror		
 RM		= rm -f
 
@@ -33,3 +33,4 @@ fclean	:	clean
 re		:	fclean all
 
 .PHONY: all clean fclean re
+.SILENT: all
