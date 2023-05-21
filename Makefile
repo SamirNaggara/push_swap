@@ -3,8 +3,20 @@ LIBS	=	libs/libft.a
 FLAGS	= -Wall -Wextra -Werror		
 RM		= rm -f
 
-SOURCES	=	./main.c
-#				./ft_main/ft_first_flag.c \
+SOURCES	=	./main.c \
+				./helper/add_link_list.c \
+				./helper/delete_link_list.c \
+				./helper/print_link_list.c \
+				./helper/test_link_list.c \
+				./init/error_handling.c \
+				./init/init.c \
+				./moves/add_move.c \
+				./moves/push.c \
+				./moves/rotate_reverse.c \
+				./moves/rotate.c \
+				./moves/swap.c \
+				./moves/swap.c \
+				./free/free.c \
 
  
 

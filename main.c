@@ -6,76 +6,46 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:08:36 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/12 23:05:19 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/21 10:53:19 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
+	t_data	*data;
 
-    ft_create_A_list(ac, av);
-    ft_printf("Je suis au bout\n");
-    //ft_printf("cmp : %d", ft_strcmp("123", INT_MAX));
-    return (0);
-}
+	data = ft_init(ac, av);
 
-int ft_create_A_list(int ac, char **av)
-{
-    int i;
+	if (ft_is_order(data->a_heap))
+		ft_printf("liste ordonnée");
+	
+	
 
-    i = 1;
-    if (ac < 1)
-        returnError();
-
-    while (i < ac)
-    {
-        ft_test_is_number(av[i]);
-        i++;
-    }
-    return (0);
-}
-
-void    ft_test_is_number(char *nbc)
-{
-    int i;
-    int sign;
-
-    sign = 1;
-    if (*nbc == '-' || *nbc == '+')
-    {
-        sign = -1;
-        nbc++;
-    }
-    if (!*nbc)
-        returnError();
-    while (*nbc == '0')
-        nbc++;
-    i = 0;
-    while (ft_isdigit(nbc[i]))
-        i++;
-    if (nbc[i])
-        returnError();
-    if (sign == 1)
-    {
-        if (ft_strlen(nbc) > 10)
-            returnError();
-        if (ft_strncmp(nbc, INT_MAX, 10) > 0)
-            returnError();
-        return ;
-    }
-
-    if (ft_strlen(nbc) > 10)
-        returnError();
-    if (ft_strncmp(nbc, INT_MIN, 10) > 0)
-        returnError();
-
+	//ft_printf("Voila les moves : %s\n", data->moves);
+	//ft_print_heap(data->a_heap);
+	
+	return (ft_free_end(data));
 }
 
 
-int     returnError()
+
+
+
+/*
+	Renvoie 1 si la liste est ordonnée
+*/
+int		ft_is_order(t_heap	**heap)
 {
-    ft_printf("Error\n");
-    exit(0);
+	t_heap	*browse;
+
+	browse = *heap;
+	while (browse->next != *heap)
+	{
+		if (browse->nb >= browse->next->nb)
+			return (0);
+		browse = browse->next;
+	}
+	return (1);
 }
