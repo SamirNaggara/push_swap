@@ -1,6 +1,6 @@
 NAME	=	push_swap
 LIBS	=	libs/libft.a
-FLAGS	= -Wall -Wextra -Werror		
+FLAGS	= -Wall -Wextra -Werror -g	
 RM		= rm -f
 
 SOURCES	=	./main.c \

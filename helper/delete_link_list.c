@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:49:52 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/21 09:46:12 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/22 10:59:19 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,21 +40,22 @@ void	ft_del_last_from_heap(t_heap **heap)
 /*
     Pour supprimer le premier d'une pile.
 */
-void	ft_del_first_from_heap(t_heap **heap)
+int	ft_del_first_from_heap(t_heap **heap)
 {
 	t_heap	*tmp;
 
 	if (!heap || !*heap)
-		return ;
+		return (0);
 	if (*heap == (*heap)->next)
 	{
 		free(*heap);
 		*heap = (t_heap *)0;
-		return ;
+		return (1);
 	}
 	(*heap)->prev->next = (*heap)->next;
 	(*heap)->next->prev = (*heap)->prev;
 	tmp = *heap;
 	*heap = (*heap)->next;
 	free(tmp);
+	return (1);
 }

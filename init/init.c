@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/21 10:38:13 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/21 10:58:42 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,9 @@ t_data	*ft_init(int ac, char **av)
 	data = malloc(sizeof(t_data));
 	if (!data)
 		return ((t_data *) 0);
+	data->nb_numbers = ac - 1;
 	ft_memset(data->moves, 0, BUFFER);
-		data->nb_move = 0;
+	data->nb_move = 0;
 	data->a_heap = ft_create_a_list(ac, av);
 	if (!data->a_heap)
 		return (((t_data *) 0));
