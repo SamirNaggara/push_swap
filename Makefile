@@ -4,12 +4,19 @@ FLAGS	= -Wall -Wextra -Werror -g
 RM		= rm -f
 
 SOURCES	=	./main.c \
+				./brute_force/brute_force.c \
+				./brute_force/display_comb.c \
+				./brute_force/increment_comb.c \
+				./brute_force/test_comb.c \
 				./helper/add_link_list.c \
 				./helper/delete_link_list.c \
 				./helper/print_link_list.c \
 				./helper/test_link_list.c \
 				./init/error_handling.c \
+				./init/init_tab_func.c \
 				./init/init.c \
+				./mediane/comparaisons.c \
+				./mediane/mediane.c \
 				./moves/add_move.c \
 				./moves/push.c \
 				./moves/rotate_reverse.c \

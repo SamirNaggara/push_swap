@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:42:49 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/22 13:27:17 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:35:23 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,5 +47,4 @@ int	ft_rrb(t_data *data)
 		return (0);
 	*(data->b_heap) = (*(data->b_heap))->prev;
 	return (1);
-
 }

@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/21 10:58:42 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:07:06 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,16 @@ t_data	*ft_init(int ac, char **av)
 	if (!data)
 		return ((t_data *) 0);
 	data->nb_numbers = ac - 1;
-	ft_memset(data->moves, 0, BUFFER);
 	data->nb_move = 0;
 	data->a_heap = ft_create_a_list(ac, av);
 	if (!data->a_heap)
-		return (((t_data *) 0));
+		return (ft_free_data_tdata(data));
 	data->b_heap = (t_heap **)malloc(sizeof(t_heap *));
 	if (!data->b_heap)
-		return (((t_data *) 0));
+		return (ft_free_a_data_tdata(data));
 	*(data->b_heap) = (t_heap *) 0;
+	ft_init_move_func(data);
+	ft_init_move_func_rev(data);
 	return (data);
 }
 
@@ -43,6 +44,8 @@ t_heap	**ft_create_a_list(int ac, char **av)
 	if (ac <= 1)
 		ft_return_error();
 	a_heap = (t_heap **)malloc(sizeof(t_heap *));
+	if (!a_heap)
+		return ((t_heap **)0);
 	*a_heap = (t_heap *) 0;
 	while (i < ac)
 	{
