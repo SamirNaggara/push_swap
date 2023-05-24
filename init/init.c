@@ -6,13 +6,13 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/24 11:23:24 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:49:04 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_data	*ft_init_bf(int ac, char **av)
+t_data	*ft_init(int ac, char **av)
 {
 	t_data	*data;
 
@@ -38,7 +38,7 @@ Créé la double liste chainée A au début !*/
 t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 {
 	int		i;
-	int		nb;
+	long		nb;
 
 	i = 1;
 	if (ac <= 1)
@@ -50,7 +50,10 @@ t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 	while (i < ac)
 	{
 		ft_test_is_number(av[i], data);
-		nb = atoi(av[i]);
+		if (data->nb_numbers <= 4)
+			nb = atoi(av[i]);
+		else
+			nb = (long)atoi(av[i]) + (long)NB_MIN;
 		if (ft_number_is_in_heap(data->a_heap, nb))
 			ft_error_and_free_a(data);
 		if (!ft_add_end_heap(data->a_heap, nb))
@@ -70,7 +73,7 @@ void	ft_error_and_free_a(t_data *data)
 /*
 	Vérifie que le nombre est pas déjà présent dans la heap
 */
-int	ft_number_is_in_heap(t_heap **heap, int nb)
+int	ft_number_is_in_heap(t_heap **heap, long nb)
 {
 	t_heap	*browse;
 	int		first_lap;

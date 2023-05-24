@@ -6,13 +6,13 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:50:22 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/24 09:29:33 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/24 12:45:42 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_heap	**ft_add_beg_heap(t_heap **heap, int nb)
+t_heap	**ft_add_beg_heap(t_heap **heap, long nb)
 {
 	t_heap	*new;
 
@@ -34,7 +34,7 @@ t_heap	**ft_add_beg_heap(t_heap **heap, int nb)
 	return (heap);
 }
 
-t_heap	**ft_add_end_heap(t_heap **heap, int nb)
+t_heap	**ft_add_end_heap(t_heap **heap, long nb)
 {
 	t_heap	*new;
 
@@ -57,7 +57,7 @@ t_heap	**ft_add_end_heap(t_heap **heap, int nb)
 
 
 
-t_heap	*ft_new_heap_element(int nb)
+t_heap	*ft_new_heap_element(long nb)
 {
 	t_heap	*new;
 
