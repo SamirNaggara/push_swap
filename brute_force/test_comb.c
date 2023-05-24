@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:11:59 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/23 14:27:21 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/24 08:34:25 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int	ft_test_combinaison_a(int *comb, t_data *data, int n, int len)
 	Ca marche du fait que les combinaisons ont tous un opposé
 	et qu'ils sont bien placé dans la liste
 */
+
 void	ft_reverse_combinaison(int *comb, t_data *data, int n)
 {
 	int	i;

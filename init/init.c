@@ -6,13 +6,13 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/23 15:07:06 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:23:24 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_data	*ft_init(int ac, char **av)
+t_data	*ft_init_bf(int ac, char **av)
 {
 	t_data	*data;
 
@@ -21,7 +21,7 @@ t_data	*ft_init(int ac, char **av)
 		return ((t_data *) 0);
 	data->nb_numbers = ac - 1;
 	data->nb_move = 0;
-	data->a_heap = ft_create_a_list(ac, av);
+	data->a_heap = ft_create_a_list(ac, av, data);
 	if (!data->a_heap)
 		return (ft_free_data_tdata(data));
 	data->b_heap = (t_heap **)malloc(sizeof(t_heap *));
@@ -35,30 +35,64 @@ t_data	*ft_init(int ac, char **av)
 
 /*
 Créé la double liste chainée A au début !*/
-t_heap	**ft_create_a_list(int ac, char **av)
+t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 {
 	int		i;
-	t_heap	**a_heap;
+	int		nb;
 
 	i = 1;
 	if (ac <= 1)
 		ft_return_error();
-	a_heap = (t_heap **)malloc(sizeof(t_heap *));
-	if (!a_heap)
+	data->a_heap = (t_heap **)malloc(sizeof(t_heap *));
+	if (!data->a_heap)
 		return ((t_heap **)0);
-	*a_heap = (t_heap *) 0;
+	*(data->a_heap) = (t_heap *) 0;
 	while (i < ac)
 	{
-		ft_test_is_number(av[i]);
-		ft_add_end_heap(a_heap, atoi(av[i]));
+		ft_test_is_number(av[i], data);
+		nb = atoi(av[i]);
+		if (ft_number_is_in_heap(data->a_heap, nb))
+			ft_error_and_free_a(data);
+		if (!ft_add_end_heap(data->a_heap, nb))
+			return (ft_free_a_data_theap(data));
 		i++;
 	}
-	return (a_heap);
+	return (data->a_heap);
+}
+
+void	ft_error_and_free_a(t_data *data)
+{
+	ft_del_all_heap(data->a_heap);
+	free(data);
+	ft_return_error();
+}
+
+/*
+	Vérifie que le nombre est pas déjà présent dans la heap
+*/
+int	ft_number_is_in_heap(t_heap **heap, int nb)
+{
+	t_heap	*browse;
+	int		first_lap;
+
+	if (!heap || !*heap)
+		return (0);
+	first_lap = 1;
+	browse = *heap;
+	while (first_lap || browse != *heap)
+	{
+		if (first_lap)
+			first_lap = 0;
+		if (browse->nb == nb)
+			return (1);
+		browse = browse->next;
+	}
+	return (0);
 }
 
 /*
 Vérifie qu'un nombre est un nombre*/
-void	ft_test_is_number(char *nbc)
+void	ft_test_is_number(char *nbc, t_data *data)
 {
 	int	i;
 	int	sign;
@@ -70,18 +104,18 @@ void	ft_test_is_number(char *nbc)
 		nbc++;
 	}
 	if (!*nbc)
-		ft_return_error();
+		ft_error_and_free_a(data);
 	while (*nbc == '0')
 		nbc++;
 	i = 0;
 	while (ft_isdigit(nbc[i]))
 		i++;
 	if (nbc[i])
-		ft_return_error();
+		ft_error_and_free_a(data);
 	if (ft_strlen(nbc) < 10)
 		return ;
 	if (sign == 1 && ft_strncmp(nbc, INT_MAX, 10) > 0)
-		ft_return_error();
+		ft_error_and_free_a(data);
 	if (sign == -1 && ft_strncmp(nbc, INT_MIN, 10) > 0)
-		ft_return_error();
+		ft_error_and_free_a(data);
 }

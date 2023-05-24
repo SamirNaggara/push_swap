@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:15:57 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/23 14:58:45 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:38:16 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,22 +27,32 @@ typedef struct s_heap
 	struct s_heap	*next;
 }	t_heap;
 
+typedef struct s_heap_bit
+{
+	unsigned int		nb;
+	struct s_heap	*prev;
+	struct s_heap	*next;
+}	t_heap_bit;
+
 typedef struct s_data
 {
-	t_heap	**a_heap;
-	t_heap	**b_heap;
-	int		nb_numbers;
-	int		nb_move;
-	int		nb_comb;
-	int		*comb;
-	int		(*move_func[11])(struct s_data *);
-	int		(*move_func_rev[11])(struct s_data *);
-	float	*med;
+	t_heap		**a_heap;
+	t_heap		**b_heap;
+	t_heap_bit	**a_heap_bit;
+	t_heap_bit	**b_heap_bit;
+	int			nb_numbers;
+	int			nb_move;
+	int			nb_comb;
+	int			*comb;
+	int			(*move_func[11])(struct s_data *);
+	int			(*move_func_rev[11])(struct s_data *);
+	float		*med;
 }	t_data;
 
+int	ft_really_small_method(t_data *data);
 int		ft_return_error(void);
-void	ft_test_is_number(char *nbc);
-t_heap	**ft_create_a_list(int ac, char **av);
+void	ft_test_is_number(char *nbc, t_data *data);
+t_heap	**ft_create_a_list(int ac, char **av, t_data *data);
 t_heap	**ft_add_end_heap(t_heap **heap, int nb);
 t_heap	*ft_new_heap_element(int nb);
 int		ft_sa(t_data *data);
@@ -64,7 +74,7 @@ int		ft_rra(t_data *data);
 int		ft_rrb(t_data *data);
 int		ft_rrr(t_data *data);
 int		ft_is_order(t_heap	**heap);
-t_data	*ft_init(int ac, char **av);
+t_data	*ft_init_bf(int ac, char **av);
 int		ft_free_end(t_data *data);
 int		*ft_brut_force_a(t_data *data);
 int		*ft_fb_a_with_n_possilities(t_data *data, int *comb, int n);
@@ -91,5 +101,9 @@ int		ft_free_data(t_data *data);
 t_data	*ft_free_data_tdata(t_data *data);
 int		ft_free_heap_and_data(t_data *data);
 t_data	*ft_free_a_data_tdata(t_data *data);
-
+int		ft_number_is_in_heap(t_heap **a_heap, int nb);
+void	ft_error_and_free_a(t_data *data);
+t_heap	**ft_free_a_data_theap(t_data *data);
+/* RADIX METHOD*/
+int	ft_radix_method(t_data *data);
 #endif

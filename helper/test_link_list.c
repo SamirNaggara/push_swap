@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:54:21 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/23 14:35:02 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/24 11:37:48 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,3 +66,5 @@ int	ft_is_empty(t_heap **heap)
 		return (1);
 	return (0);
 }
+
+
