@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:08:36 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/24 13:46:41 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:22:36 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,112 @@ int	main(int ac, char **av)
 int	ft_radix_method(t_data *data)
 {
 	(void)data;
-	printf("Before sort : \n");
-	ft_print_heap(data->a_heap);
+	//printf("Before sort : \n");
+	//ft_print_heap(data->a_heap);
+	data->nb_min = ft_get_nb_min_from_a(data);
+	//ft_printf("nb_min : %d\n", (int)data->nb_min);
+	ft_iter_a(data);
+	//ft_print_heap(data->a_heap);
 
 	data->nb_max = ft_get_nb_max_from_a(data);
 	if (!ft_radix_sort(data))
 		return (0);
-	printf("nb_max : %ld", data->nb_max);
-	printf("After sort : \n");
+	//printf("nb_max : %ld\n", data->nb_max);
+	//printf("After sort : \n");
+	//ft_print_heap(data->a_heap);
+	//printf("la premier nombre : %d\n", data->comb[0]);
+	//printf("et maintenant toutes la comb\n");
+	ft_display_comb(data);
+	free(data->comb);
 
 	return (1);
 }
 
+void	ft_iter_a(t_data *data)
+{
+	int		first_lap;
+	t_heap	*browse;
+
+	first_lap = 1;
+	browse = *(data->a_heap);
+	while (first_lap || browse != *(data->a_heap))
+	{
+		if (first_lap)
+			first_lap = 0;
+		browse->nb += (data->nb_min) * -1 + 1;
+		browse = browse->next;
+	}
+}
+
 int	ft_radix_sort(t_data *data)
 {
-	int	size;
-	//int	i;
+	int		i;
+	int		j;
+	int		k;
 
-	size = ft_size_binary(data->nb_max);
-	printf("Nombre total de move prevu : %ld\n", ft_get_comb_nb_radix(data, size));
-	// while (i < size)
-	// {
-	// if (!comb)
-	// 	return ((int *)0);
-	// 	if ()
-	// 	i++;
-	// }
+	data->size_max = ft_size_binary(data->nb_max);
+	data->nb_comb = ft_get_comb_nb_radix(data);
+	data->comb = (int *)malloc(sizeof(int) * (data->nb_comb));
+	if (!data->comb)
+		return (0);
+	i = 0;
+	k = 0;
+	while (i < data->size_max)
+	{
+		j = 0;
+		while (j < data->nb_numbers)
+		{
+			ft_radix_one_bit(data, i, k);
+			j++;
+			k++;
+			//printf("k in loop : %d\n", k);
+
+		}
+		k = ft_push_all_b_in_a(data, k);
+		//printf("k after push all : %d\n", k);
+		
+		i++;
+	}
 	return (1);
 
+}
+
+int	ft_push_all_b_in_a(t_data *data, int k)
+{
+	//printf("je rentre dans all b in a\n");
+	while ((data->b_heap) && (*(data->b_heap)))
+	{
+		data->comb[k] = 3;
+		ft_pa(data);
+		k++;
+		//printf("J'ai poussé dans A : k = %d\n", k);
+	}
+	//printf("je sors de all b in a\n");
+
+	return (k);
+}
+
+/*
+	Si un bit est 0, alors on on le laisse la, on fait un ra
+	Si c'est un 1, on le pb
+*/
+void	ft_radix_one_bit(t_data *data, int i, int k)
+{
+	int		nb;
+
+
+	nb = (*(data->a_heap))->nb;
+	if (((nb>>i) & 1) == 1)
+	{
+		data->comb[k] = 5;
+		ft_ra(data);
+	}
+	else
+	{
+		data->comb[k] = 4;
+		ft_pb(data);
+	}
+	
 }
 
 /*
@@ -77,7 +155,7 @@ int	ft_radix_sort(t_data *data)
 	Donc, on boucle dans la heap a
 	Et on determine combien de mouvement va nous couter chaque nombre
 */
-long	ft_get_comb_nb_radix(t_data *data, int size_max)
+int	ft_get_comb_nb_radix(t_data *data)
 {
 	int		first_lap;
 	t_heap	*browse;
@@ -90,7 +168,7 @@ long	ft_get_comb_nb_radix(t_data *data, int size_max)
 	{
 		if (first_lap)
 			first_lap = 0;
-		nb_move += ft_get_comb_length(browse->nb, size_max);
+		nb_move += ft_get_comb_length(browse->nb, data->size_max);
 		browse = browse->next;
 	}
 	return (nb_move);
@@ -103,24 +181,22 @@ long	ft_get_comb_nb_radix(t_data *data, int size_max)
 	Donc là on calcul pour 1 nombre combien de déplacement il va 
 	neccessiter
 */
-long	ft_get_comb_length(long nb, int size_max)
+int	ft_get_comb_length(long nb, int size_max)
 {
 	int		i;
-	long	local_nb_move;
+	int	local_nb_move;
 
 	local_nb_move = 0;
 	i = 0;
 	while (i < size_max)
 	{
-		if (((nb>>i) & 1) == 0)
+		if (((nb>>i) & 1) == 1)
 			local_nb_move++;
 		else
 			local_nb_move+=2;
 		i++;
 	}
-
 	return (local_nb_move);
-
 }
 
 
@@ -145,6 +221,29 @@ long	ft_get_nb_max_from_a(t_data *data)
 		browse = browse->next;
 	}
 	return (bigger);
+}
+
+long	ft_get_nb_min_from_a(t_data *data)
+{
+	long	smaller;
+	int		first_lap;
+	t_heap	*browse;
+
+	first_lap = 1;
+	browse = *(data->a_heap);
+	while (first_lap || browse != *(data->a_heap))
+	{
+		if (first_lap)
+		{
+			smaller = browse->nb;
+			browse = browse->next;
+			first_lap = 0;
+			continue ;
+		}
+		smaller = ft_nb_min(smaller, browse->nb);
+		browse = browse->next;
+	}
+	return (smaller);
 }
 
 int	ft_size_binary(unsigned long nb)

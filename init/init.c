@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/24 12:49:04 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:44:45 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 	while (i < ac)
 	{
 		ft_test_is_number(av[i], data);
-		if (data->nb_numbers <= 4)
-			nb = atoi(av[i]);
-		else
-			nb = (long)atoi(av[i]) + (long)NB_MIN;
+			nb = (long)atoi(av[i]);
 		if (ft_number_is_in_heap(data->a_heap, nb))
 			ft_error_and_free_a(data);
 		if (!ft_add_end_heap(data->a_heap, nb))

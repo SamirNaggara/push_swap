@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:15:57 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/24 13:40:07 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/25 13:51:29 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_data
 	int			nb_move;
 	int			nb_comb;
 	long		nb_max;
+	long		nb_min;
+	int			size_max;
 	int			*comb;
 	int			(*move_func[11])(struct s_data *);
 	int			(*move_func_rev[11])(struct s_data *);
@@ -105,7 +107,11 @@ int				ft_radix_method(t_data *data);
 unsigned long	ft_int_to_unsigned_int(int nb);
 long			ft_get_nb_max_from_a(t_data *data);
 int				ft_size_binary(unsigned long nb);
-long	ft_get_comb_nb_radix(t_data *data, int size_max);
-long	ft_get_comb_length(long nb, int size_max);
+int	ft_get_comb_nb_radix(t_data *data);
+int	ft_get_comb_length(long nb, int size_max);
 int	ft_radix_sort(t_data *data);
+int	ft_push_all_b_in_a(t_data *data, int k);
+void	ft_radix_one_bit(t_data *data, int i, int k);
+long	ft_get_nb_min_from_a(t_data *data);
+void	ft_iter_a(t_data *data);
 #endif
