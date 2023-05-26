@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/25 13:44:45 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:11:23 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ Créé la double liste chainée A au début !*/
 t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 {
 	int		i;
-	long		nb;
+	long	nb;
 
 	i = 1;
 	if (ac <= 1)

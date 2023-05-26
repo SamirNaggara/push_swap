@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 14:00:28 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/23 14:28:31 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:07:45 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,12 @@ int	ft_increment_comb(int *comb, int n)
 	i = n - 1;
 	while (i >= 0)
 	{
-		if (comb[i] == 11)
+		if (comb[i] == 2 || comb[i] == 1)
+		{
+			comb[i]++;
+			continue ;
+		}
+		if (comb[i] == 7)
 		{
 			if (i == 0)
 				return (0);

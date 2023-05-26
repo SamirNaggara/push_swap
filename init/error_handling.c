@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:55:20 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/21 10:41:53 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/26 12:57:29 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 
 int	ft_return_error(void)
 {
-	ft_printf("Error\n");
+	write(STDERR_FILENO, "Error\n", 6);
 	exit(0);
 }

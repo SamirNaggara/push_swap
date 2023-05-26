@@ -6,11 +6,21 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:55:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/23 15:04:21 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:07:57 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
+
+int	ft_really_small_method(t_data *data)
+{
+	data->comb = ft_brut_force_a(data);
+	if (!data->comb)
+		return (ft_free_heap_and_data(data));
+	ft_display_comb(data);
+	free(data->comb);
+	return (1);
+}
 
 /*
 	Pour un petit nombre, on essaie toute les possibilités
