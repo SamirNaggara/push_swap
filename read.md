@@ -51,6 +51,7 @@ Le principe est :
 Si aucune ne marche, alors je test avec 2 combinaisons.
 Si aucune ne marche, alors je test avec 3, etc...
 
+
 Pour consommer moins de memoire, je tente de ne meme pas essayé les possiblités incohérentes.
 Par exemple, il est impossible de finir avec un pb.
 Ou de commencer avec pa.

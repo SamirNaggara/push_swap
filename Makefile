@@ -1,10 +1,11 @@
-NAME		= push_swap
-LIB			= libftprintf.a
-LIB_PATH	= printf
-FLAGS		= -Wall -Wextra -Werror -g	
-RM			= rm -f
-GREEN		= \033[0;32m
-RESET		= \033[0m
+NAME		= 	push_swap
+LIB_PATH	= 	libft-plus
+LIBFT 		= 	$(LIB_PATH)/libft.a
+PRINTF		=	$(LIB_PATH)/printf.a 
+FLAGS		= 	-Wall -Wextra -Werror -g	
+RM			= 	rm -f
+GREEN		= 	\033[0;32m
+RESET		= 	\033[0m
 
 
 
@@ -44,37 +45,37 @@ CC	=	gcc $(FLAGS)
 RM	=	rm -f				
 
 all		: lib $(NAME)
-	@echo -e "$(GREEN)\n\nC'est bon, plus qu'à executer ./$(NAME) avec tes nombres derrières.\n\nSi tu ne sais pas quoi tester, essaie ça : ./$(NAME) 987 52 -365 10 54 87 63 88 -16 59\n${RESET}"
+	@echo -e "$(GREEN)\n\nC'est bon, plus qu'à executer ./$(NAME) avec tes nombres a trier derrières.\n\n$(RESET)Si tu ne sais pas quoi tester, essaie ça : ./$(NAME) 987 52 -365 10 54 87 63 88 -16 59\n"
 
 $(NAME): $(OBJETS)
 	@echo "Création de l'executable $(NAME)"
-	@$(CC) $(FLAGS)-o $@ $^ $(LIB)
+	@$(CC) $(FLAGS)-o $@ $^ $(PRINTF) $(LIBFT)
 
 %.o: %.c
 	@echo "Génération de $@"
 	@$(CC) $(FLAGS) -o $@ -c $< 
 
 lib	: 
-	@echo "Je déclenche le Makefile de Printf, et donc de Libft"
-	@$(MAKE) -C $(LIB_PATH) all
-	@echo "Copie de $(LIB) dans le repertoire courant"
-	@cp $(LIB_PATH)/$(LIB) $(LIB)
+	@echo "Je déclenche le Makefile de Libft-plus\n"
+	@$(MAKE) --no-print-directory -C $(LIB_PATH) all
+	@echo "Je sors du Makefile de Libft-plus"
+
 
 clean	:
-		@echo "Suppression des .o"
-		@$(RM) $(OBJETS)
-		@echo "On clean la librairie"
-		@$(MAKE) -C $(LIB_PATH) clean				 
+	@echo "Suppression des .o de push_swap"
+	@$(RM) $(OBJETS)
+	@echo "\n$(GREEN)Tout les .o ont bien été effacé$(RESET)"
+
 
 fclean	:	clean
-		@echo "Suppression de $(NAME)"
-		@$(RM) $(NAME)
-		@echo "Suppression de a.out"
-		@$(RM) a.out
-		@echo "Suppression de la librairie"
-		@$(MAKE) -C $(LIB_PATH) fclean
-		@$(RM) a.out
-		@$(RM) $(LIB)
+	@echo "Suppression de $(NAME)"
+	@$(RM) $(NAME)
+	@echo "Suppression de a.out au cas ou"
+	@$(RM) a.out
+	@echo "Je rentre dans la librairie libft-plus"
+	@$(MAKE) --no-print-directory -C $(LIB_PATH) fclean
+	@echo "Je sors de la librairie libft-plus"
+	@echo "\n$(GREEN)Tout les fichiers ont bien été effacés$(RESET)\n"
 
 re		:	fclean all
 

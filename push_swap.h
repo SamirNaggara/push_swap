@@ -6,14 +6,14 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:15:57 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/26 19:08:38 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/27 10:19:13 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include "printf/ft_printf.h"
-# include "printf/libft.h"
+# include "libft-plus/libft/libft.h"
+# include "libft-plus/printf/ft_printf.h"
 # include <stdarg.h>
 # include <string.h>
 
