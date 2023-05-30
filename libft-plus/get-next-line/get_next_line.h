@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/29 18:29:30 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/07 17:39:16 by snaggara         ###   ########.fr       */
+/*   Created: 2023/05/28 12:42:32 by snaggara          #+#    #+#             */
+/*   Updated: 2023/05/29 23:53:53 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,16 @@
 #  define BUFFER_SIZE 100 
 # endif
 
-typedef struct s_buffer
-{
-	char			*str;
-	int				nb_octet;
-	int				pos_n;
-	struct s_buffer	*next;
-}t_buffer;
+# ifndef NB_FILE_MAX
+#  define NB_FILE_MAX 10
+# endif
 
-char		*get_next_line(int fd);
-char		*ft_strdup(const char *s);
-char		*all_buffer_concat(t_buffer **data_buffer, int total_octet);
-void		cut_str(t_buffer *browse, char *memory);
-int			read_once_more(t_buffer *browse, int fd);
-char		*ft_strdup(const char *s);
-size_t		ft_strlen(const char *str);
-void		*ft_memset(void *s, int c, size_t n);
-int			found_pos_char(const char *big, const char little);
-t_buffer	**free_list(t_buffer **data_buffer, int what);
-t_buffer	**init_and_first_read(int *nb_line, char *memory, int fd);
+char	*get_next_line(int fd);
+int		ft_read(char **line, int fd);
+char	*ft_strjoin_custom(char *reading, char *tmp);
+size_t	ft_strlen(const char *str);
+int		ft_strchr_custom(const char *s, int c);
+size_t	ft_strlcpy(char *dest, char *src, size_t size);
+char	*ft_strdup(char *s);
 
 #endif
