@@ -85,7 +85,7 @@ OBJETS_LIBFT = $(SOURCES_LIBFT:.c=.o)
 OBJETS_PRINTF = $(SOURCES_PRINTF:.c=.o)
 OBJETS_GNL = $(SOURCES_GNL:.c=.o)
 
-all: progress $(LIBFT) $(PRINTF) $(GNL) clean
+all: progress $(LIBFT) $(PRINTF) $(GNL)
 	@echo "\n$(BIG)	Bravo, les librairies $(LIBFT) $(PRINTF) $(GNL) sont disponibles dans $(NAME)$(RESET)\n"
 
 %.o: %.c
@@ -112,7 +112,7 @@ clean:
 	@rm -f $(OBJETS_PRINTF)
 	@echo "	Suppresion des .o de GNL"
 	@rm -f $(OBJETS_GNL)
-fclean:
+fclean:clean
 	@echo "	Suppresion de la librairie $(LIBFT)"
 	@rm -f $(LIBFT)
 	@echo "	Suppresion de la librairie $(PRINTF)"

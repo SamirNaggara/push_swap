@@ -6,13 +6,13 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/29 12:17:38 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/29 23:54:40 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/05/30 11:12:52 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *str)
+size_t	ft_strlen_custom(const char *str)
 {
 	size_t	i;
 
@@ -29,7 +29,7 @@ int	ft_strchr_custom(const char *s, int c)
 
 	if (!s || !*s)
 		return (-1);
-	size = (int)ft_strlen(s);
+	size = (int)ft_strlen_custom(s);
 	if (size > BUFFER_SIZE)
 		i = size - BUFFER_SIZE;
 	else
@@ -43,13 +43,13 @@ int	ft_strchr_custom(const char *s, int c)
 	return (-1);
 }
 
-size_t	ft_strlcpy(char *dest, char *src, size_t size)
+size_t	ft_strlcpy_custom(char *dest, char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
 	if (size == 0)
-		return (ft_strlen(src));
+		return (ft_strlen_custom(src));
 	while (i < size - 1 && src[i])
 	{
 		dest[i] = src[i];
@@ -57,10 +57,10 @@ size_t	ft_strlcpy(char *dest, char *src, size_t size)
 		i++;
 	}
 	dest[i] = '\0';
-	return (ft_strlen(src));
+	return (ft_strlen_custom(src));
 }
 
-char	*ft_strdup(char *s)
+char	*ft_strdup_custom(char *s)
 {
 	char	*result;
 	size_t	size;
@@ -70,7 +70,7 @@ char	*ft_strdup(char *s)
 		return (NULL);
 	if (!*s)
 		return (NULL);
-	size = ft_strlen(s);
+	size = ft_strlen_custom(s);
 	result = (char *)malloc(sizeof(char) * (size + 1));
 	if (!result)
 		return (NULL);
@@ -96,7 +96,7 @@ char	*ft_strjoin_custom(char *line, char *tmp)
 
 	if (!line)
 		return (tmp);
-	result = malloc(sizeof(char) * (ft_strlen(line) + ft_strlen(tmp)+ 1));
+	result = malloc(sizeof(char) * (ft_strlen_custom(line) + ft_strlen_custom(tmp)+ 1));
 	if (!result)
 	{
 		free(tmp);

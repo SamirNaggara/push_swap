@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 16:31:39 by snaggara          #+#    #+#             */
-/*   Updated: 2022/12/27 22:37:12 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:09:38 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@
 char	*p_replace(char *str, t_flag_list *flag, va_list *args, t_infos *infos)
 {
 	char	*to_return;
-	ulong	nbr;
+	long long	nbr;
 	char	*char_nbr;
 	char	*char_to_display;
 
-	nbr = (ulong)va_arg(*args, void *);
+	nbr = (long long)va_arg(*args, void *);
 	if (!nbr)
 		return (replace_flag_by_str(str, flag, "(nil)", infos->size));
 	char_nbr = ft_itoa_hexa_ulong(nbr);

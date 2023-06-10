@@ -6,22 +6,22 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 01:42:27 by snaggara          #+#    #+#             */
-/*   Updated: 2022/12/27 22:47:53 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/06/10 21:09:38 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 #include "../ft_printf.h"
 
-char	*ft_itoa_hexa_ulong(ulong n)
+char	*ft_itoa_hexa_ulong(long long n)
 {
 	char	*result;
-	ulong	number;
-	ulong	i;
-	ulong	len;
+	long long	number;
+	long long	i;
+	long long	len;
 
 	i = 0;
-	number = (ulong)n;
+	number = (long long)n;
 	len = ft_get_len4(number);
 	result = ft_initialise_result4(len);
 	if (!result)
@@ -37,7 +37,7 @@ char	*ft_itoa_hexa_ulong(ulong n)
 	return (result);
 }
 
-char	*ft_initialise_result4(ulong len)
+char	*ft_initialise_result4(long long len)
 {
 	char	*result;
 
@@ -48,22 +48,22 @@ char	*ft_initialise_result4(ulong len)
 	return (result);
 }
 
-ulong	ft_get_len4(ulong n)
+long long	ft_get_len4(long long n)
 {
-	ulong	i;
-	ulong	n_copy;
+	long long	i;
+	long long	n_copy;
 
-	n_copy = (ulong)n;
+	n_copy = (long long)n;
 	i = 1;
 	while (n_copy >= 16)
 	{
 		n_copy = n_copy / 16;
 		i++;
 	}
-	return ((ulong)i);
+	return ((long long)i);
 }
 
-ulong	ft_power4(ulong nb, ulong power)
+long long	ft_power4(long long nb, long long power)
 {
 	if (power == 0)
 		return (1);
