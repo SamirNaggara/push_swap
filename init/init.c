@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/26 15:11:23 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:41:09 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 
 	i = 1;
 	if (ac <= 1)
-		ft_return_error();
+		ft_return_error(data);
 	data->a_heap = (t_heap **)malloc(sizeof(t_heap *));
 	if (!data->a_heap)
 		return ((t_heap **)0);
@@ -63,8 +63,7 @@ t_heap	**ft_create_a_list(int ac, char **av, t_data *data)
 void	ft_error_and_free_a(t_data *data)
 {
 	ft_del_all_heap(data->a_heap);
-	free(data);
-	ft_return_error();
+	ft_return_error(data);
 }
 
 /*

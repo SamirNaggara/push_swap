@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 18:15:57 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/27 10:19:13 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:40:41 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_data
 }	t_data;
 
 int				ft_really_small_method(t_data *data);
-int				ft_return_error(void);
+int				ft_return_error(t_data *data);
 void			ft_test_is_number(char *nbc, t_data *data);
 t_heap			**ft_create_a_list(int ac, char **av, t_data *data);
 t_heap			**ft_add_end_heap(t_heap **heap, long nb);

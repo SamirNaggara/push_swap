@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/23 13:55:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/05/26 15:07:57 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/08/07 18:48:54 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,6 @@ int	*ft_brut_force_a(t_data *data)
 	sauf si on est au bout !
 	La on renvoie un pointeur null
 */
-
 
 int	*ft_fb_a_with_n_possilities(t_data *data, int *comb, int n)
 {
