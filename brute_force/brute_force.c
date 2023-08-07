@@ -60,6 +60,7 @@ int	*ft_brut_force_a(t_data *data)
 	La on renvoie un pointeur null
 */
 
+
 int	*ft_fb_a_with_n_possilities(t_data *data, int *comb, int n)
 {
 	if (ft_test_combinaison_a(comb, data, n, data->nb_numbers))
