@@ -2,7 +2,7 @@ NAME		= 	push_swap
 LIB_PATH	= 	libft-plus
 LIBFT 		= 	$(LIB_PATH)/libft.a
 PRINTF		=	$(LIB_PATH)/printf.a 
-FLAGS		= 	-Wall -Wextra -Werror -g	
+FLAGS		= 	-Wall -Wextra -Werror 
 RM			= 	rm -f
 GREEN		= 	\033[0;32m
 RESET		= 	\033[0m
@@ -49,7 +49,7 @@ all		: lib $(NAME)
 
 $(NAME): $(OBJETS)
 	@echo "Création de l'executable $(NAME)"
-	@$(CC) $(FLAGS)-o $@ $^ $(PRINTF) $(LIBFT)
+	@$(CC) $(FLAGS) -o $@ $^ $(PRINTF) $(LIBFT)
 
 %.o: %.c
 	@echo "Génération de $@"
