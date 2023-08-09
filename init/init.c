@@ -6,7 +6,7 @@
 /*   By: snaggara <snaggara@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/20 13:56:54 by snaggara          #+#    #+#             */
-/*   Updated: 2023/08/07 18:41:09 by snaggara         ###   ########.fr       */
+/*   Updated: 2023/08/09 11:34:11 by snaggara         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,8 @@ void	ft_test_is_number(char *nbc, t_data *data)
 	sign = 1;
 	if (*nbc == '-' || *nbc == '+')
 	{
-		sign = -1;
+		if (*nbc == '-')
+			sign = -1;
 		nbc++;
 	}
 	if (!*nbc)
@@ -111,10 +112,10 @@ void	ft_test_is_number(char *nbc, t_data *data)
 		i++;
 	if (nbc[i])
 		ft_error_and_free_a(data);
-	if (ft_strlen(nbc) < 10)
-		return ;
-	if (sign == 1 && ft_strncmp(nbc, INT_MAX, 10) > 0)
+	if (ft_strlen(nbc) > 10)
 		ft_error_and_free_a(data);
-	if (sign == -1 && ft_strncmp(nbc, INT_MIN, 10) > 0)
+	if (sign == 1 && ft_strlen(nbc) == 10 && ft_strncmp(nbc, INT_MAX, 10) > 0)
+		ft_error_and_free_a(data);
+	if (sign == -1 && ft_strlen(nbc) == 10 && ft_strncmp(nbc, INT_MIN, 10) > 0)
 		ft_error_and_free_a(data);
 }
